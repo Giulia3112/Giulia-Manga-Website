@@ -1,7 +1,0 @@
-# Firebase config — never commit real keys
-firebase-config.js
-
-# OS / Editor
-.DS_Store
-Thumbs.db
-*.log
