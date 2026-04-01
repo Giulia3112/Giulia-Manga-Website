@@ -14,18 +14,29 @@
   ───────────────────────────────────────── */
   let db = null, storage = null, auth = null;
   let firebaseReady = false;
+  let storageReady  = false;
 
   try {
     if (typeof firebaseConfig !== 'undefined' &&
         !firebaseConfig.apiKey.startsWith('COLE_AQUI')) {
-      firebase.initializeApp(firebaseConfig);
-      db      = firebase.firestore();
-      storage = firebase.storage();
-      auth    = firebase.auth();
+      // Avoid duplicate initialization across page reloads
+      const app = firebase.apps.length
+        ? firebase.app()
+        : firebase.initializeApp(firebaseConfig);
+      db   = firebase.firestore();
+      auth = firebase.auth();
       firebaseReady = true;
+
+      // Storage is optional — only needed for image uploads
+      try {
+        storage = firebase.storage();
+        storageReady = true;
+      } catch (se) {
+        console.warn('Firebase Storage não disponível — imagens serão salvas como base64.', se);
+      }
     }
   } catch (e) {
-    console.warn('Firebase não configurado — usando modo local.', e);
+    console.error('Erro ao inicializar Firebase:', e);
   }
 
   /* ─────────────────────────────────────────
@@ -77,22 +88,25 @@
     return await ref.getDownloadURL();
   }
 
-  // Prepare data for Firestore: replace any base64 images with Storage URLs
+  // Prepare data for Firestore: upload base64 images to Storage if available
   async function prepareForFirestore(data) {
     const out = JSON.parse(JSON.stringify(data));
 
     for (let n = 1; n <= TOTAL_DOSSIER; n++) {
       const entry = out.dossier && out.dossier[n];
       if (entry && entry.image && entry.image.startsWith('data:')) {
-        setStatus('⟳ Enviando imagem do card #' + n + ' para o Storage…');
-        try {
-          const url = await uploadImageToStorage(`images/dossier/${n}`, entry.image);
-          out.dossier[n].image = url;
-          appData.dossier[n].image = url; // update local ref too
-        } catch (e) {
-          console.error('Erro ao fazer upload da imagem #' + n, e);
-          delete out.dossier[n].image; // drop if fails
+        if (storageReady) {
+          setStatus('⟳ Enviando imagem do card #' + n + ' para o Storage…');
+          try {
+            const url = await uploadImageToStorage(`images/dossier/${n}`, entry.image);
+            out.dossier[n].image = url;
+            appData.dossier[n].image = url;
+          } catch (e) {
+            console.error('Erro ao fazer upload da imagem #' + n, e);
+            // Keep the base64 as fallback — Firestore may reject if too large
+          }
         }
+        // If Storage not ready, keep base64 in Firestore (works for text-only saves)
       }
     }
 
@@ -394,21 +408,29 @@
   /* ─────────────────────────────────────────
      Firebase badge in header
   ───────────────────────────────────────── */
-  function showFirebaseStatus(connected) {
+  function showFirebaseStatus() {
     const existing = document.getElementById('fbStatus');
     if (existing) existing.remove();
     const badge = document.createElement('span');
     badge.id = 'fbStatus';
+    let label, color;
+    if (firebaseReady && storageReady) {
+      label = '● Firebase + Storage'; color = '#27ae60';
+    } else if (firebaseReady) {
+      label = '● Firebase (sem Storage)'; color = '#2980b9';
+    } else {
+      label = '● Modo local (Firebase não conectado)'; color = '#e08a00';
+    }
     badge.style.cssText = `
       font-family: var(--font-mono);
       font-size: 0.58rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 0.2rem 0.6rem;
-      border: 1px solid ${connected ? '#27ae60' : '#e08a00'};
-      color: ${connected ? '#27ae60' : '#e08a00'};
+      border: 1px solid ${color};
+      color: ${color};
     `;
-    badge.textContent = connected ? '● Firebase' : '● Modo local';
+    badge.textContent = label;
     const headerRight = document.querySelector('.adm-header-right');
     if (headerRight) headerRight.prepend(badge);
   }
@@ -426,7 +448,7 @@
     }
 
     renderTagsManager();
-    showFirebaseStatus(firebaseReady);
+    showFirebaseStatus();
   }
 
   /* ─────────────────────────────────────────
