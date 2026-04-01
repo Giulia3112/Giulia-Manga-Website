@@ -564,9 +564,11 @@
       await db.collection(FS_COLLECTION).doc('__test__').set({ ok: true });
       await db.collection(FS_COLLECTION).doc('__test__').delete();
       console.log('[Admin] ✓ Permissão de escrita no Firestore OK');
+      setStatus('✓ Firestore OK — pode salvar normalmente.', '#1a7a4a');
+      setTimeout(() => setStatus(''), 4000);
     } catch (e) {
       console.error('[Admin] ✗ Firestore write test FALHOU:', e.code, e.message);
-      setStatus('⚠ Sem permissão de escrita no Firestore. Verifique as Rules.', '#b92b27');
+      setStatus(`✗ Erro Firestore [${e.code || 'desconhecido'}]: ${e.message}`, '#b92b27');
     }
   }
 
