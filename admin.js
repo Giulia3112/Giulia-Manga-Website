@@ -146,13 +146,54 @@
   }
 
   /* ─────────────────────────────────────────
-     Status message helper
+     Status message helper — sidebar + toast
   ───────────────────────────────────────── */
+  let toastTimer = null;
+
   function setStatus(msg, color) {
+    // Sidebar message
     const el = document.getElementById('saveMsg');
-    if (!el) return;
-    el.textContent = msg;
-    el.style.color = color || '#888';
+    if (el) { el.textContent = msg; el.style.color = color || '#888'; }
+
+    // Toast notification at top of screen
+    let toast = document.getElementById('adminToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'adminToast';
+      toast.style.cssText = `
+        position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+        padding: 0.75rem 1.5rem;
+        font-family: monospace; font-size: 0.8rem; font-weight: 600;
+        text-align: center; letter-spacing: 0.04em;
+        transition: opacity 0.3s;
+      `;
+      document.body.appendChild(toast);
+    }
+
+    clearTimeout(toastTimer);
+
+    if (!msg) {
+      toast.style.opacity = '0';
+      setTimeout(() => { toast.style.display = 'none'; }, 350);
+      return;
+    }
+
+    const bg = color === '#1a7a4a' ? '#d4edda'
+             : color === '#b92b27' ? '#f8d7da'
+             : color === '#e08a00' ? '#fff3cd'
+             : '#e9ecef';
+    const tc = color || '#333';
+    toast.style.background = bg;
+    toast.style.color = tc;
+    toast.style.borderBottom = `2px solid ${tc}`;
+    toast.style.display = 'block';
+    toast.style.opacity = '1';
+    toast.textContent = msg;
+
+    // Errors stay until dismissed; success/info auto-clear
+    if (color !== '#b92b27') {
+      toastTimer = setTimeout(() => setStatus(''), 8000);
+    }
   }
 
   /* ─────────────────────────────────────────
@@ -547,31 +588,43 @@
   document.getElementById('btnSaveAll').addEventListener('click', async () => {
     const btn = document.getElementById('btnSaveAll');
     btn.disabled = true;
+    btn.textContent = '⟳ Salvando…';
 
     if (firebaseReady) {
       try {
         setStatus('⟳ Preparando dados…');
         const prepared = await prepareForFirestore(appData);
-        setStatus('⟳ Salvando no Firebase…');
+        setStatus('⟳ Gravando no Firestore…');
         await saveToFirestore(prepared);
         cacheLocal(prepared);
-        setStatus('✓ Salvo no Firebase! Alterações já estão visíveis no site.', '#1a7a4a');
+        btn.textContent = 'Salvar alterações';
+        btn.disabled = false;
+        setStatus('✓ Salvo! Alterações já visíveis no site.', '#1a7a4a');
+        // Success: auto-clear after 8s
+        setTimeout(() => setStatus(''), 8000);
       } catch (err) {
-        console.error(err);
-        setStatus('✗ Erro ao salvar: ' + err.message, '#b92b27');
+        console.error('Erro ao salvar no Firebase:', err);
+        btn.textContent = 'Salvar alterações';
+        btn.disabled = false;
+        // Error: stays visible until next save attempt
+        const msg = err.code === 'permission-denied'
+          ? '✗ Permissão negada — atualize as Regras do Firestore para: allow write: if request.auth != null'
+          : '✗ Erro: ' + (err.message || err.code || 'desconhecido');
+        setStatus(msg, '#b92b27');
       }
     } else {
-      // Local only
       try {
         cacheLocal(appData);
-        setStatus('✓ Salvo localmente. Configure o Firebase para publicar para todos.', '#e08a00');
+        btn.textContent = 'Salvar alterações';
+        btn.disabled = false;
+        setStatus('✓ Salvo localmente. Firebase não conectado — dados não aparecem para outros visitantes.', '#e08a00');
+        setTimeout(() => setStatus(''), 10000);
       } catch (err) {
+        btn.textContent = 'Salvar alterações';
+        btn.disabled = false;
         setStatus('✗ Erro ao salvar: ' + err.message, '#b92b27');
       }
     }
-
-    btn.disabled = false;
-    setTimeout(() => setStatus(''), 5000);
   });
 
 })();
