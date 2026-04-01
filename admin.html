@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — G.A. Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ── LOGIN ── -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">G.A.</div>
+      <h1>Painel Admin</h1>
+      <p class="login-sub">Acesso restrito ao editor do site</p>
+      <form id="loginForm" autocomplete="on">
+        <div class="login-field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" autocomplete="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="login-field">
+          <label for="loginPass">Senha</label>
+          <input type="password" id="loginPass" autocomplete="current-password" placeholder="••••••••••" required>
+        </div>
+        <p id="loginError" class="login-error" hidden>Credenciais incorretas. Tente novamente.</p>
+        <button type="submit">Entrar →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div id="dashboard" hidden>
+
+    <header class="adm-header">
+      <div class="adm-header-left">
+        <span class="adm-logo">G.A.</span>
+        <span class="adm-badge">Admin</span>
+      </div>
+      <div class="adm-header-right">
+        <a href="index.html" target="_blank" class="adm-link-btn">← Ver site</a>
+        <button id="btnLogout" class="adm-ghost-btn">Sair</button>
+      </div>
+    </header>
+
+    <div class="adm-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="adm-sidebar">
+        <nav class="adm-sidenav">
+          <button class="adm-nav-item active" data-tab="dossier">
+            <span>◉</span> Achievements
+          </button>
+          <button class="adm-nav-item" data-tab="tags">
+            <span>◐</span> Tags
+          </button>
+        </nav>
+        <div class="adm-sidebar-foot">
+          <button id="btnSaveAll" class="adm-save-btn">Salvar alterações</button>
+          <p id="saveMsg" class="adm-save-msg"></p>
+          <p class="adm-save-hint">As alterações ficam salvas localmente e aparecem no site ao recarregar a página.</p>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="adm-main">
+
+        <!-- DOSSIER TAB -->
+        <div id="tab-dossier" class="adm-tab active">
+          <div class="adm-tab-header">
+            <h2>My favourite achievements <span class="adm-count" id="dossierCount">24 cards</span></h2>
+            <p>Edite os marcos da trajetória. Arraste ou selecione uma foto para cada frame. Textos substituem as traduções automáticas.</p>
+          </div>
+          <div id="dossierGrid" class="adm-dossier-grid"></div>
+        </div>
+
+        <!-- TAGS TAB -->
+        <div id="tab-tags" class="adm-tab">
+          <div class="adm-tab-header">
+            <h2>Sistema de Tags <span class="adm-count" id="tagsCount">0 tags</span></h2>
+            <p>Gerencie as tags centrais disponíveis em todos os cards. As tags aparecem como opções de seleção nos editores.</p>
+          </div>
+          <div id="tagsManager"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat v10) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="translations.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

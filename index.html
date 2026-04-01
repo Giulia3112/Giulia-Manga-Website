@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giulia Alvares — Builder, Thinker, Maker</title>
+  <meta name="description" content="Personal portfolio of Giulia Alvares — founder, academic, inventor, and artist navigating the intersection of business, technology, research, and art.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="translations.js"></script>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">G.A.</a>
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-i18n="nav_identity">Identity</a></li>
+        <li><a href="#track-record" data-i18n="nav_record">Achievements</a></li>
+        <li><a href="#contact" data-i18n="nav_findme">Find me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-label" data-i18n="hero_label">Portfolio / 2026</p>
+        <h1 class="hero-title" data-i18n-html="hero_title">
+          Hi, I am <span class="hero-name">Giulia Alvares</span>,
+        </h1>
+        <h2 class="hero-subtitle" data-i18n-html="hero_subtitle">
+          an <em>"I don't know what"</em> on the making.
+        </h2>
+        <p class="hero-description" data-i18n="hero_description">
+          I am a multidisciplinary builder navigating business, technology, research, and art. I create things at the intersection of ambition, curiosity, and execution.
+        </p>
+        <div class="hero-cta">
+          <a href="#about" class="btn btn-primary" data-i18n="hero_cta1">Explore my world</a>
+          <a href="#projects" class="btn btn-secondary" data-i18n="hero_cta2">See my work</a>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <img src="assets/giulia-portrait.png" alt="Manga-style illustration of Giulia Alvares" width="480" height="480">
+          <div class="portrait-caption">
+            <span data-i18n="portrait_caption">est. 20XX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span data-i18n="scroll_hint">scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT / IDENTITY -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title" data-i18n="about_title">Identity</h2>
+        <p class="section-subtitle" data-i18n="about_subtitle">Four facets of the same restlessness</p>
+      </div>
+
+      <div class="identity-grid">
+
+        <article class="identity-card" data-identity="founder">
+          <div class="card-header">
+            <span class="card-number">I</span>
+            <h3 class="card-title" data-i18n="founder_title">Founder</h3>
+          </div>
+          <div class="card-body">
+            <p data-i18n="founder_p1">I build ventures to transform ideas into initiatives capable of impacting real systems. My founder journey began with Rearth, created during a global innovation competition, and evolved through Hult Prize and international ecosystems such as Silicon Valley.</p>
+            <p data-i18n-html="founder_p2">Along the way, I realized that talent exists everywhere, but opportunity does not. From that inquietude, <strong>NATTA</strong> was born: a platform designed to democratize access to global opportunities.</p>
+          </div>
+          <div class="card-tag" data-i18n="founder_tag">ventures &middot; impact &middot; systems</div>
+        </article>
+
+        <article class="identity-card" data-identity="academic">
+          <div class="card-header">
+            <span class="card-number">II</span>
+            <h3 class="card-title" data-i18n="academic_title">Academic</h3>
+          </div>
+          <div class="card-body">
+            <p data-i18n="academic_p1">Since early on, the pursuit of excellence has shaped my formation. During high school, I became a national medalist in Astronomy and Astronautics and served as a volunteer teacher in the field.</p>
+            <p data-i18n-html="academic_p2">During a gap year dedicated to academic exploration, I earned a scholarship to the <strong>University of Cambridge</strong>, where I studied Physics. I began university in Aerospace Engineering before finding Business as my central intellectual field.</p>
+          </div>
+          <div class="card-tag" data-i18n="academic_tag">physics &middot; cambridge &middot; interdisciplinary</div>
+        </article>
+
+        <article class="identity-card" data-identity="inventor">
+          <div class="card-header">
+            <span class="card-number">III</span>
+            <h3 class="card-title" data-i18n="inventor_title">Inventor</h3>
+          </div>
+          <div class="card-body">
+            <p data-i18n="inventor_p1">I am driven by building products, systems, and technological solutions. At NATTA, I led the product journey from idea to MVP, participating directly in technical, product, and UX decisions.</p>
+            <p data-i18n="inventor_p2">This made me into a junior developer with an integrated vision of business and technology. I cultivate a strong interest in hardware and applied engineering, which also inspired long-term technical initiatives.</p>
+          </div>
+          <div class="card-tag" data-i18n="inventor_tag">product &middot; technology &middot; engineering</div>
+        </article>
+
+        <article class="identity-card" data-identity="artist">
+          <div class="card-header">
+            <span class="card-number">IV</span>
+            <h3 class="card-title" data-i18n="artist_title">Artist</h3>
+          </div>
+          <div class="card-body">
+            <p data-i18n="artist_p1">Writing has always been part of how I organize thought and express creativity. I produce nonfiction, have coauthored work connected to Operations Research and Game Theory, and have participated in literary competitions.</p>
+            <p data-i18n="artist_p2">Alongside writing, I maintain a deeply personal drawing practice. My art works like a silent confession — for what cannot always be said directly.</p>
+          </div>
+          <div class="card-tag" data-i18n="artist_tag">writing &middot; drawing &middot; expression</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section track-record" id="track-record">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title" data-i18n="track_title">My favourite achievements</h2>
+        <p class="section-subtitle" data-i18n="track_subtitle">A partial archive of milestones, recognitions, and chapters</p>
+      </div>
+
+      <div class="dossier-cards" id="dossierCards">
+        <!-- cards rendered by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FIND ME -->
+  <section class="section contact" id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title" data-i18n="contact_title">Find Me</h2>
+        <p class="section-subtitle" data-i18n="contact_subtitle">Or let me find you — I'm usually somewhere between an idea and a deadline</p>
+      </div>
+
+      <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/giulia-alvares/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-card-inner">
+            <span class="contact-icon">in</span>
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-action" data-i18n="contact_connect">Connect →</span>
+          </div>
+        </a>
+
+        <a href="mailto:alvaresgiulia@gmail.com" class="contact-card">
+          <div class="contact-card-inner">
+            <span class="contact-icon">@</span>
+            <span class="contact-label">Email</span>
+            <span class="contact-action" data-i18n="contact_write">Write to me →</span>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/giulia__alvares/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-card-inner">
+            <span class="contact-icon">ig</span>
+            <span class="contact-label">Instagram</span>
+            <span class="contact-action" data-i18n="contact_follow">Follow →</span>
+          </div>
+        </a>
+
+        <a href="#" class="contact-card contact-card--special">
+          <div class="contact-card-inner">
+            <span class="contact-icon">⌘</span>
+            <span class="contact-label" data-i18n="contact_clone">Clone Me</span>
+            <span class="contact-action" data-i18n="contact_clone_action">Just kidding. Or am I? →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text" data-i18n="footer_text">Giulia Alvares © 2026 — Drawn by hand, built with intention.</p>
+      <p class="footer-note" data-i18n="footer_note">This website is a living document.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK (compat v10) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
