@@ -124,11 +124,20 @@
 
   // Save to Firestore
   async function saveToFirestore(data) {
-    console.log('[Admin] Tentando salvar no Firestore…', { collection: FS_COLLECTION, doc: FS_DOC });
-    console.log('[Admin] Auth user:', auth.currentUser ? auth.currentUser.email : 'NÃO LOGADO');
-    console.log('[Admin] Tamanho aprox. dos dados (chars):', JSON.stringify(data).length);
+    const user = auth.currentUser;
+    console.log('[Admin] Auth user:', user ? user.email : 'NÃO LOGADO');
+
+    if (!user) {
+      throw Object.assign(new Error('Usuário não autenticado. Faça login novamente.'), { code: 'unauthenticated' });
+    }
+
+    // Force token refresh so Firestore receives a valid auth header
+    await user.getIdToken(true);
+
+    console.log('[Admin] Token atualizado. Salvando no Firestore…');
+    console.log('[Admin] Tamanho dos dados (chars):', JSON.stringify(data).length);
     await db.collection(FS_COLLECTION).doc(FS_DOC).set(data);
-    console.log('[Admin] ✓ Salvo no Firestore com sucesso!');
+    console.log('[Admin] ✓ Salvo com sucesso!');
   }
 
   // Load from Firestore
