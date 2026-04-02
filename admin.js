@@ -81,14 +81,17 @@
      Firebase helpers
   ───────────────────────────────────────── */
 
-  // Upload a base64 image to Firebase Storage, return the download URL
+  // Upload a base64 image to Firebase Storage with timeout
   async function uploadImageToStorage(path, base64) {
     const ref = storage.ref(path);
-    await ref.putString(base64, 'data_url');
-    return await ref.getDownloadURL();
+    const upload = ref.putString(base64, 'data_url').then(() => ref.getDownloadURL());
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('timeout')), 12000)
+    );
+    return Promise.race([upload, timeout]);
   }
 
-  // Prepare data for Firestore: upload base64 images to Storage if available
+  // Prepare data for Firestore: upload images to Storage; strip base64 if Storage fails
   async function prepareForFirestore(data) {
     const out = JSON.parse(JSON.stringify(data));
 
@@ -96,17 +99,18 @@
       const entry = out.dossier && out.dossier[n];
       if (entry && entry.image && entry.image.startsWith('data:')) {
         if (storageReady) {
-          setStatus('⟳ Enviando imagem do card #' + n + ' para o Storage…');
+          setStatus(`⟳ Enviando imagem ${n}/${TOTAL_DOSSIER} para o Storage…`);
           try {
             const url = await uploadImageToStorage(`images/dossier/${n}`, entry.image);
             out.dossier[n].image = url;
             appData.dossier[n].image = url;
           } catch (e) {
-            console.error('Erro ao fazer upload da imagem #' + n, e);
-            // Keep the base64 as fallback — Firestore may reject if too large
+            console.warn(`Storage falhou para imagem #${n} (${e.message}) — imagem removida do Firestore`);
+            delete out.dossier[n].image; // Remove base64 to avoid Firestore size limit
           }
+        } else {
+          delete out.dossier[n].image; // No Storage = no images in Firestore
         }
-        // If Storage not ready, keep base64 in Firestore (works for text-only saves)
       }
     }
 
@@ -608,6 +612,17 @@
     btn.disabled = true;
     btn.textContent = '⟳ Salvando…';
 
+    const resetBtn = () => {
+      btn.disabled = false;
+      btn.textContent = 'Salvar alterações';
+    };
+
+    // Global safety timeout — button never stays stuck
+    const safetyTimer = setTimeout(() => {
+      resetBtn();
+      setStatus('✗ Timeout: o salvamento demorou demais. Verifique a conexão com o Firebase.', '#b92b27');
+    }, 30000);
+
     if (firebaseReady) {
       try {
         setStatus('⟳ Preparando dados…');
@@ -615,31 +630,28 @@
         setStatus('⟳ Gravando no Firestore…');
         await saveToFirestore(prepared);
         cacheLocal(prepared);
-        btn.textContent = 'Salvar alterações';
-        btn.disabled = false;
+        clearTimeout(safetyTimer);
+        resetBtn();
         setStatus('✓ Salvo! Alterações já visíveis no site.', '#1a7a4a');
-        // Success: auto-clear after 8s
         setTimeout(() => setStatus(''), 8000);
       } catch (err) {
+        clearTimeout(safetyTimer);
         console.error('Erro ao salvar no Firebase:', err);
-        btn.textContent = 'Salvar alterações';
-        btn.disabled = false;
-        // Error: stays visible until next save attempt
+        resetBtn();
         const msg = err.code === 'permission-denied'
-          ? '✗ Permissão negada — atualize as Regras do Firestore para: allow write: if request.auth != null'
-          : '✗ Erro: ' + (err.message || err.code || 'desconhecido');
+          ? '✗ Permissão negada — verifique as Rules do Firestore'
+          : `✗ Erro [${err.code || 'desconhecido'}]: ${err.message}`;
         setStatus(msg, '#b92b27');
       }
     } else {
+      clearTimeout(safetyTimer);
       try {
         cacheLocal(appData);
-        btn.textContent = 'Salvar alterações';
-        btn.disabled = false;
+        resetBtn();
         setStatus('✓ Salvo localmente. Firebase não conectado — dados não aparecem para outros visitantes.', '#e08a00');
         setTimeout(() => setStatus(''), 10000);
       } catch (err) {
-        btn.textContent = 'Salvar alterações';
-        btn.disabled = false;
+        resetBtn();
         setStatus('✗ Erro ao salvar: ' + err.message, '#b92b27');
       }
     }
