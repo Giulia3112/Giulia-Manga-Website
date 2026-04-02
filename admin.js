@@ -29,10 +29,15 @@
 
       // Storage is optional — only needed for image uploads
       try {
-        storage = firebase.storage();
+        // Pass bucket URL explicitly to support new .firebasestorage.app format
+        const bucket = firebaseConfig.storageBucket
+          ? `gs://${firebaseConfig.storageBucket}`
+          : undefined;
+        storage = bucket ? firebase.storage(bucket) : firebase.storage();
         storageReady = true;
+        console.log('[Admin] Firebase Storage inicializado:', firebaseConfig.storageBucket);
       } catch (se) {
-        console.warn('Firebase Storage não disponível — imagens serão salvas como base64.', se);
+        console.warn('Firebase Storage não disponível — imagens serão salvas sem Storage.', se);
       }
     }
   } catch (e) {
