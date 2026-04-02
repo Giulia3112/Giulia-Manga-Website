@@ -561,14 +561,14 @@
   ───────────────────────────────────────── */
   async function testFirestoreWrite() {
     try {
-      await db.collection(FS_COLLECTION).doc('__test__').set({ ok: true });
-      await db.collection(FS_COLLECTION).doc('__test__').delete();
+      await db.collection(FS_COLLECTION).doc('write-test').set({ ok: true });
+      await db.collection(FS_COLLECTION).doc('write-test').delete();
       console.log('[Admin] ✓ Permissão de escrita no Firestore OK');
-      setStatus('✓ Firestore OK — pode salvar normalmente.', '#1a7a4a');
-      setTimeout(() => setStatus(''), 4000);
     } catch (e) {
       console.error('[Admin] ✗ Firestore write test FALHOU:', e.code, e.message);
-      setStatus(`✗ Erro Firestore [${e.code || 'desconhecido'}]: ${e.message}`, '#b92b27');
+      if (e.code !== 'invalid-argument') {
+        setStatus(`✗ Erro Firestore [${e.code || 'desconhecido'}]: ${e.message}`, '#b92b27');
+      }
     }
   }
 
