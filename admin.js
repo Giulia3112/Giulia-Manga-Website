@@ -356,25 +356,19 @@
       year:  saved.year  ?? (t[`dossier_${n}_year`]  || ''),
       title: saved.title ?? (t[`dossier_${n}_title`] || ''),
       desc:  saved.desc  ?? (t[`dossier_${n}_desc`]  || ''),
-      tag:   saved.tag   ?? (t[`dossier_${n}_tag`]   || ''),
-      image: saved.image ?? null
     };
     const ensure = () => { if (!appData.dossier[n]) appData.dossier[n] = {}; };
 
     const card = document.createElement('div');
     card.className = 'adm-card adm-dossier-card';
 
-    const imgCol = document.createElement('div');
-    imgCol.className = 'adm-dossier-img-col';
-    const imgHdr = document.createElement('div');
-    imgHdr.className = 'adm-card-header';
-    imgHdr.innerHTML = `<span class="adm-card-id">#${n}</span><span class="adm-card-year" id="year-badge-${n}">${cur.year}</span>`;
-    imgCol.appendChild(imgHdr);
-    imgCol.appendChild(buildImageWidget(cur.image, (src) => { ensure(); appData.dossier[n].image = src; }));
-    card.appendChild(imgCol);
+    const hdr = document.createElement('div');
+    hdr.className = 'adm-card-header';
+    hdr.innerHTML = `<span class="adm-card-id">#${n}</span><span class="adm-card-year" id="year-badge-${n}">${cur.year}</span>`;
+    card.appendChild(hdr);
 
-    const fieldsCol = document.createElement('div');
-    fieldsCol.className = 'adm-dossier-fields-col';
+    const body = document.createElement('div');
+    body.className = 'adm-dossier-fields-col';
 
     const row1 = document.createElement('div'); row1.className = 'adm-row';
     row1.appendChild(mkField('Ano', 'text', cur.year, v => {
@@ -383,19 +377,10 @@
       if (badge) badge.textContent = v;
     }));
     row1.appendChild(mkField('Título', 'text', cur.title, v => { ensure(); appData.dossier[n].title = v; }));
-    fieldsCol.appendChild(row1);
-    fieldsCol.appendChild(mkField('Descrição', 'textarea', cur.desc, v => { ensure(); appData.dossier[n].desc = v; }));
+    body.appendChild(row1);
+    body.appendChild(mkField('Descrição', 'textarea', cur.desc, v => { ensure(); appData.dossier[n].desc = v; }));
 
-    const tagField = document.createElement('div');
-    tagField.className = 'adm-field';
-    const tagLbl = document.createElement('label'); tagLbl.textContent = 'Tag';
-    tagField.appendChild(tagLbl);
-    const { el: tagEl, refresh } = buildTagPicker(cur.tag, (val) => { ensure(); appData.dossier[n].tag = val; });
-    tagField.appendChild(tagEl);
-    fieldsCol.appendChild(tagField);
-    tagPickerRefreshers.push(refresh);
-
-    card.appendChild(fieldsCol);
+    card.appendChild(body);
     return card;
   }
 

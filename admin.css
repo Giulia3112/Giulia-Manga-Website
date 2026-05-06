@@ -336,9 +336,9 @@ body {
 }
 
 .adm-dossier-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
 }
 
 .adm-card {
@@ -383,20 +383,12 @@ body {
 
 .adm-card-body { padding: 1.25rem; }
 
-/* Dossier card: 2-column layout */
+/* Dossier card: single-column compact layout */
 .adm-dossier-card {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 0;
+  display: block;
 }
 
-.adm-dossier-img-col {
-  border-right: var(--border);
-  display: flex;
-  flex-direction: column;
-}
-
-.adm-dossier-fields-col { padding: 1.25rem; }
+.adm-dossier-fields-col { padding: 0.85rem; }
 
 /* ── IMAGE UPLOAD WIDGET ─────────────────── */
 
@@ -538,7 +530,7 @@ body {
 }
 .adm-field input:focus,
 .adm-field textarea:focus { border-color: var(--black); }
-.adm-field textarea { min-height: 80px; }
+.adm-field textarea { min-height: 60px; }
 
 .adm-row {
   display: grid;
@@ -670,12 +662,8 @@ body {
 /* ── RESPONSIVE ─────────────────────────── */
 
 @media (max-width: 900px) {
-  .adm-dossier-card {
-    grid-template-columns: 1fr;
-  }
-  .adm-dossier-img-col {
-    border-right: none;
-    border-bottom: var(--border);
+  .adm-dossier-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 }
 
