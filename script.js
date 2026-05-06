@@ -113,25 +113,17 @@
     const year  = ov.year  || dict[`dossier_${n}_year`]  || '';
     const title = ov.title || dict[`dossier_${n}_title`] || '';
     const desc  = ov.desc  || dict[`dossier_${n}_desc`]  || '';
-    const tag   = ov.tag   || dict[`dossier_${n}_tag`]   || '';
-    const image = ov.image || null;
 
     const card = document.createElement('div');
     card.className = 'dossier-card animate-on-scroll';
-
-    const imgDiv = document.createElement('div');
-    imgDiv.className = 'dossier-card-image';
-    imgDiv.appendChild(buildMangaPanel(image, dict['img_placeholder'] || 'photo / illustration'));
 
     const body = document.createElement('div');
     body.className = 'dossier-card-body';
     body.innerHTML =
       `<div class="dossier-year-badge">${year}</div>` +
       `<h4 class="dossier-card-title">${title}</h4>` +
-      `<p class="dossier-card-desc">${desc}</p>` +
-      `<span class="dossier-tag">${tag}</span>`;
+      `<p class="dossier-card-desc">${desc}</p>`;
 
-    card.appendChild(imgDiv);
     card.appendChild(body);
     return card;
   }
