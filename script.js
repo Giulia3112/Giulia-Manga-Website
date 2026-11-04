@@ -7,7 +7,7 @@
   const ADMIN_KEY     = 'ga-admin-data';
   const FS_COLLECTION = 'site';
   const FS_DOC        = 'data';
-  const TOTAL_DOSSIER = 24;
+  const TOTAL_DOSSIER = 29;
 
   /* ─────────────────────────────────────────
      Firebase init (graceful if not configured)
@@ -131,15 +131,81 @@
   /* ─────────────────────────────────────────
      Render all dossier cards
   ───────────────────────────────────────── */
+  function getCardYear(n, dict) {
+    const ov = (adminData.dossier && adminData.dossier[n]) || {};
+    return String(ov.year || dict[`dossier_${n}_year`] || '').trim();
+  }
+
   function renderDossierCards(dict) {
     const container = document.getElementById('dossierCards');
     if (!container) return;
     container.innerHTML = '';
+
+    // Group card numbers by year (keeps original order inside each year)
+    const groups = new Map();
     for (let i = 1; i <= TOTAL_DOSSIER; i++) {
-      const el = buildDossierCard(i, dict);
-      container.appendChild(el);
-      animateOnScroll.observe(el);
+      const year = getCardYear(i, dict) || '—';
+      if (!groups.has(year)) groups.set(year, []);
+      groups.get(year).push(i);
     }
+
+    // Newest year first; non-numeric labels go to the end
+    const years = Array.from(groups.keys()).sort((a, b) => {
+      const na = parseInt(a, 10), nb = parseInt(b, 10);
+      if (isNaN(na) && isNaN(nb)) return 0;
+      if (isNaN(na)) return 1;
+      if (isNaN(nb)) return -1;
+      return nb - na;
+    });
+
+    // Year quick-jump nav
+    const yearNav = document.createElement('nav');
+    yearNav.className = 'dossier-year-nav animate-on-scroll';
+    yearNav.setAttribute('aria-label', 'Years');
+
+    years.forEach(year => {
+      const slug = `year-${year.replace(/[^a-z0-9]+/gi, '-')}`;
+
+      const chip = document.createElement('a');
+      chip.className = 'dossier-year-chip';
+      chip.href = `#${slug}`;
+      chip.textContent = year;
+      chip.addEventListener('click', e => {
+        const target = document.getElementById(slug);
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - (nav.offsetHeight + 20);
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+      yearNav.appendChild(chip);
+
+      const section = document.createElement('section');
+      section.className = 'dossier-year-section';
+      section.id = slug;
+
+      const head = document.createElement('div');
+      head.className = 'dossier-year-header animate-on-scroll';
+      head.innerHTML =
+        `<h3 class="dossier-year-title">${year}</h3>` +
+        `<span class="dossier-year-line"></span>` +
+        `<span class="dossier-year-count">${String(groups.get(year).length).padStart(2, '0')}</span>`;
+      section.appendChild(head);
+      animateOnScroll.observe(head);
+
+      const grid = document.createElement('div');
+      grid.className = 'dossier-year-grid';
+      groups.get(year).forEach(n => {
+        const el = buildDossierCard(n, dict);
+        grid.appendChild(el);
+        animateOnScroll.observe(el);
+      });
+      section.appendChild(grid);
+
+      container.appendChild(section);
+    });
+
+    container.insertBefore(yearNav, container.firstChild);
+    animateOnScroll.observe(yearNav);
   }
 
   /* ─────────────────────────────────────────

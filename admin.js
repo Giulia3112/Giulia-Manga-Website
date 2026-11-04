@@ -7,7 +7,7 @@
   const STORAGE_KEY    = 'ga-admin-data';
   const FS_COLLECTION  = 'site';
   const FS_DOC         = 'data';
-  const TOTAL_DOSSIER  = 24;
+  const TOTAL_DOSSIER  = 29;
 
   /* ─────────────────────────────────────────
      Firebase init (graceful if not configured)

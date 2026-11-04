@@ -643,6 +643,73 @@ strong {
 }
 
 .dossier-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Year quick-jump chips */
+.dossier-year-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: -1rem;
+}
+
+.dossier-year-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--black);
+  background: var(--white);
+  border: var(--border-medium);
+  box-shadow: var(--shadow-card-sm);
+  padding: 0.35rem 0.9rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.dossier-year-chip:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Year section */
+.dossier-year-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dossier-year-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+}
+
+.dossier-year-line {
+  flex: 1;
+  height: 3px;
+  background: var(--black);
+}
+
+.dossier-year-count {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  background: var(--black);
+  padding: 0.25rem 0.6rem;
+}
+
+.dossier-year-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.25rem;
@@ -1118,7 +1185,7 @@ strong {
     max-width: 260px;
   }
 
-  .dossier-cards {
+  .dossier-year-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -1140,6 +1207,10 @@ strong {
 
   .hero-title {
     font-size: 1.8rem;
+  }
+
+  .dossier-year-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-subtitle {
