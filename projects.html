@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="page_title_projects">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Giulia Alvares</title>
+  <meta name="description" content="Projects by Giulia Alvares — ventures, products, research initiatives, and hackathon builds across EdTech, AI, social commerce, and climate.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="translations.js"></script>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">G.A.</a>
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about" data-i18n="nav_identity">Identity</a></li>
+        <li><a href="projects.html" class="current" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="index.html#track-record" data-i18n="nav_record">Achievements</a></li>
+        <li><a href="index.html#contact" data-i18n="nav_findme">Find me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PROJECTS -->
+  <section class="section projects-page" id="projects">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title" data-i18n="projects_title">Projects</h2>
+        <p class="section-subtitle" data-i18n="projects_subtitle">Things I’ve built — some out in the world, some still in the lab</p>
+      </div>
+
+      <!-- Quick jump -->
+      <nav class="dossier-year-nav pj-jump" aria-label="Projects">
+        <a class="dossier-year-chip" href="#gimie">Gimie</a>
+        <a class="dossier-year-chip" href="#natta">NATTA</a>
+        <a class="dossier-year-chip" href="#temperate">Temperate.me</a>
+        <a class="dossier-year-chip" href="#aipply">AIpply</a>
+        <a class="dossier-year-chip" href="#rearth">Rearth</a>
+        <a class="dossier-year-chip" href="#quickimovel">QuickImóvel</a>
+        <a class="dossier-year-chip" href="#marcelo-alvares">Marcelo Alvares Imóveis</a>
+        <a class="dossier-year-chip" href="#modo">MODO</a>
+        <a class="dossier-year-chip" href="#carbonpay">CarbonPay</a>
+      </nav>
+
+      <!-- ── Ventures & products ── -->
+      <div class="projects-group">
+        <div class="projects-group-header">
+          <h3 class="projects-group-title" data-i18n="pj_group_main">Ventures &amp; products</h3>
+          <span class="projects-group-line"></span>
+          <span class="projects-group-note" data-i18n="pj_group_main_note">From idea to product</span>
+        </div>
+
+        <div class="pj-grid">
+        <!-- 1. Gimie -->
+        <article class="pj-entry" id="gimie">
+          <div class="pj-logo-band pj-logo-band--black">
+            <img src="assets/gimie-logo.png" alt="Gimie logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">01</span>
+            <h3 class="pj-title">Gimie</h3>
+            <p class="pj-tagline" data-i18n="pj_gimie_tagline">Social Commerce &amp; Shopping Intelligence</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_gimie_cat">Social Commerce · AdTech · AI</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_gimie_stage">MVP built · pre-revenue</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_gimie_role">Co-founder &amp; CMO</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_gimie_p1"></p>
+              <p data-i18n="pj_gimie_p2"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/gimie-photo.jpg" alt="Gimie app on an iPhone">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata" poster="assets/gimie-photo.jpg">
+                  <source src="assets/gimie-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. NATTA -->
+        <article class="pj-entry" id="natta">
+          <div class="pj-logo-band">
+            <img src="assets/natta-logo.png" alt="NATTA logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">02</span>
+            <h3 class="pj-title">NATTA</h3>
+            <p class="pj-tagline" data-i18n="pj_natta_tagline">AI-Powered Application Operating System</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_natta_cat">EdTech · AI · SaaS</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_natta_stage">MVP built · market validation</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_natta_role">Founder &amp; CEO</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_natta_p1"></p>
+              <p data-i18n="pj_natta_p2"></p>
+              <p data-i18n="pj_natta_p3"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/natta-photo.jpg" alt="NATTA app on an iPhone">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata" poster="assets/natta-photo.jpg">
+                  <source src="assets/natta-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Temperate.me -->
+        <article class="pj-entry" id="temperate">
+          <div class="pj-logo-band pj-logo-band--black">
+            <img src="assets/temperate-logo.png" alt="Temperate.me logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">03</span>
+            <h3 class="pj-title">Temperate.me</h3>
+            <p class="pj-tagline" data-i18n="pj_temperate_tagline">AI Decision Oversight &amp; Contestability</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_temperate_cat">AI Research · Responsible AI · Decision Intelligence</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_temperate_stage">R&amp;D · stealth · no users yet</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_temperate_role">Co-founder</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_temperate_p1"></p>
+              <p data-i18n="pj_temperate_p2"></p>
+              <p data-i18n="pj_temperate_p3"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <div class="manga-panel-label pj-stealth-label" data-i18n="pj_temperate_stealth">Prototype in stealth mode</div>
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata">
+                  <source src="assets/temperate-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. AIpply Web Scraper -->
+        <article class="pj-entry" id="aipply">
+          <div class="pj-logo-band pj-logo-band--black">
+            <img src="assets/aipply-logo.png" alt="AIpply logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">04</span>
+            <h3 class="pj-title">AIpply Web Scraper</h3>
+            <p class="pj-tagline" data-i18n="pj_aipply_tagline">AI Opportunity Discovery Engine</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_aipply_cat">Web Scraping · AI · EdTech</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_aipply_stage">Prototype · precursor to NATTA</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_aipply_role">Creator &amp; product developer</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_aipply_p1"></p>
+              <p data-i18n="pj_aipply_p2"></p>
+              <p data-i18n="pj_aipply_p3"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled pj-panel--cover">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/aipply-photo.jpg" alt="AIpply app on an iPhone">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata" poster="assets/aipply-photo.jpg">
+                  <source src="assets/aipply-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Rearth -->
+        <article class="pj-entry" id="rearth">
+          <div class="pj-logo-band pj-logo-band--black">
+            <img class="pj-logo-crop" src="assets/rearth-logo.jpg" alt="Rearth logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">05</span>
+            <h3 class="pj-title">Rearth</h3>
+            <p class="pj-tagline" data-i18n="pj_rearth_tagline">AI for Regenerative Agriculture</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_rearth_cat">AgriTech · ClimateTech · AI</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_rearth_stage">Startup built · international programs</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_rearth_role">Founder &amp; CEO</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_rearth_p1"></p>
+              <p data-i18n="pj_rearth_p2"></p>
+              <p data-i18n="pj_rearth_p3"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled pj-panel--cover">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/rearth-photo.png" alt="Rearth app on iPhone">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <span class="pj-play">▶</span>
+                <div class="manga-panel-label" data-i18n="pj_media_video">product video / demo — coming soon</div>
+              </figure>
+            </div>
+          </div>
+        </article>
+        </div>
+      </div>
+
+      <!-- ── Commercial projects ── -->
+      <div class="projects-group">
+        <div class="projects-group-header">
+          <h3 class="projects-group-title" data-i18n="pj_group_commerce">Commercial projects</h3>
+          <span class="projects-group-line"></span>
+          <span class="projects-group-note" data-i18n="pj_group_commerce_note">Built for the market</span>
+        </div>
+
+        <div class="pj-grid">
+        <!-- QuickImóvel -->
+        <article class="pj-entry" id="quickimovel">
+          <div class="pj-logo-band pj-logo-band--black">
+            <img src="assets/quickimovel-logo.png" alt="QuickImóvel logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">08</span>
+            <h3 class="pj-title">QuickImóvel</h3>
+            <p class="pj-tagline" data-i18n="pj_quickimovel_tagline">PropTech · Real Estate</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_quickimovel_cat">PropTech · Real Estate</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_quickimovel_stage">Commercial project</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_quickimovel_role">Builder</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_quickimovel_p1"></p>
+              <p data-i18n="pj_quickimovel_p2"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/quickimovel-logo.png" alt="QuickImóvel mark">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata">
+                  <source src="assets/quickimovel-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Marcelo Alvares Imóveis -->
+        <article class="pj-entry" id="marcelo-alvares">
+          <div class="pj-logo-band pj-logo-band--black">
+            <img src="assets/marcelo-logo.png" alt="Marcelo Alvares Imóveis logo">
+          </div>
+          <div class="pj-body">
+            <span class="pj-num">09</span>
+            <h3 class="pj-title">Marcelo Alvares Imóveis</h3>
+            <p class="pj-tagline" data-i18n="pj_marcelo_tagline">Real Estate Brokerage</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_marcelo_cat">Real Estate · Commercial</dd></div>
+              <div><dt data-i18n="pj_label_stage">Stage</dt><dd data-i18n="pj_marcelo_stage">Commercial project</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_marcelo_role">Builder</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_marcelo_p1"></p>
+              <p data-i18n="pj_marcelo_p2"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled pj-panel--cover">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/marcelo-photo.jpg" alt="Marcelo Alvares Imóveis website">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <span class="pj-play">▶</span>
+                <div class="manga-panel-label" data-i18n="pj_media_video">product video / demo — coming soon</div>
+              </figure>
+            </div>
+          </div>
+        </article>
+        </div>
+      </div>
+
+      <!-- ── Hackathon projects ── -->
+      <div class="projects-group">
+        <div class="projects-group-header">
+          <h3 class="projects-group-title" data-i18n="pj_group_hack">Hackathon projects</h3>
+          <span class="projects-group-line"></span>
+          <span class="projects-group-note" data-i18n="pj_group_hack_note">Built in days, not months</span>
+        </div>
+
+        <div class="pj-grid">
+        <!-- 6. MODO -->
+        <article class="pj-entry" id="modo">
+          <div class="pj-body">
+            <span class="pj-num">06</span>
+            <h3 class="pj-title">MODO</h3>
+            <p class="pj-tagline" data-i18n="pj_modo_tagline">Organizational Decision Intelligence</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_modo_cat">Enterprise AI · Decision Intelligence · Digital Twins</dd></div>
+              <div><dt data-i18n="pj_label_origin">Origin</dt><dd data-i18n="pj_modo_stage">Hackathon project</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_modo_role">Product &amp; strategy</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_modo_p1"></p>
+              <p data-i18n="pj_modo_p2"></p>
+              <p data-i18n-html="pj_modo_p3"></p>
+              <p data-i18n="pj_modo_p4"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled pj-panel--cover">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/modo-photo.png" alt="MODO website">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata" poster="assets/modo-photo.png">
+                  <source src="assets/modo-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. CarbonPay -->
+        <article class="pj-entry" id="carbonpay">
+          <div class="pj-body">
+            <span class="pj-num">07</span>
+            <h3 class="pj-title">CarbonPay</h3>
+            <p class="pj-tagline" data-i18n="pj_carbonpay_tagline">ClimateTech / FinTech — Hackathon</p>
+            <dl class="pj-meta">
+              <div><dt data-i18n="pj_label_category">Category</dt><dd data-i18n="pj_carbonpay_cat">ClimateTech · FinTech</dd></div>
+              <div><dt data-i18n="pj_label_origin">Origin</dt><dd data-i18n="pj_carbonpay_stage">Hackathon project</dd></div>
+              <div><dt data-i18n="pj_label_role">Role</dt><dd data-i18n="pj_carbonpay_role">Builder</dd></div>
+            </dl>
+            <div class="pj-desc">
+              <p data-i18n="pj_carbonpay_p1"></p>
+            </div>
+            <div class="pj-media">
+              <figure class="manga-panel pj-panel pj-panel--image pj-panel--filled pj-panel--cover">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <img src="assets/carbonpay-photo.png" alt="CarbonPay website">
+              </figure>
+              <figure class="manga-panel pj-panel pj-panel--video pj-panel--filled">
+                <span class="manga-corner manga-corner-tl"></span><span class="manga-corner manga-corner-tr"></span><span class="manga-corner manga-corner-bl"></span><span class="manga-corner manga-corner-br"></span>
+                <video controls playsinline preload="metadata" poster="assets/carbonpay-photo.png">
+                  <source src="assets/carbonpay-demo.mp4" type="video/mp4">
+                </video>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bonus: this website -->
+        <a href="index.html" class="pj-entry pj-entry--meta">
+          <div class="pj-body">
+            <span class="pj-num">∞</span>
+            <h3 class="pj-title" data-i18n="site_title">This website</h3>
+            <p class="pj-tagline" data-i18n="site_role">Designer, developer, model</p>
+            <div class="pj-desc">
+              <p data-i18n="site_desc"></p>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text" data-i18n="footer_text">Giulia Alvares © 2026 — Drawn by hand, built with intention.</p>
+      <p class="footer-note" data-i18n="footer_note">This website is a living document.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

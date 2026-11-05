@@ -13,6 +13,7 @@
   ],
   "routes": [
     { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/projects", "dest": "/projects.html" },
     { "src": "/", "dest": "/index.html" }
   ]
 }

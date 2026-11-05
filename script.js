@@ -225,7 +225,8 @@
     });
 
     document.documentElement.lang = lang;
-    if (dict.page_title) document.title = dict.page_title;
+    const titleKey = document.documentElement.getAttribute('data-title-key') || 'page_title';
+    if (dict[titleKey]) document.title = dict[titleKey];
 
     document.querySelectorAll('.lang-btn').forEach(btn =>
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang)
@@ -277,7 +278,7 @@
   /* ─────────────────────────────────────────
      Observe static animated elements
   ───────────────────────────────────────── */
-  document.querySelectorAll('.identity-card, .writing-card, .contact-card, .section-header').forEach(el => {
+  document.querySelectorAll('.identity-card, .pj-entry, .projects-group-header, .writing-card, .contact-card, .section-header').forEach(el => {
     el.classList.add('animate-on-scroll');
     animateOnScroll.observe(el);
   });

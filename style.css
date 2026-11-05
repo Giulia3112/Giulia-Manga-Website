@@ -137,7 +137,8 @@ strong {
   transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.current {
   border-color: var(--black);
   background: var(--black);
   color: var(--white);
@@ -627,8 +628,289 @@ strong {
   font-size: 0.92rem;
   line-height: 1.75;
   color: var(--gray-700);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   max-width: 600px;
+}
+
+/* Project groups */
+.projects-group + .projects-group {
+  margin-top: 3.5rem;
+}
+
+.projects-group-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.projects-group-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.projects-group-line {
+  flex: 1;
+  height: 3px;
+  background: var(--black);
+}
+
+.projects-group-note {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+
+/* ── Projects page (projects.html) ── */
+.projects-page {
+  padding-top: 9rem;
+  background:
+    linear-gradient(135deg, var(--gray-50) 25%, transparent 25%) -10px 0,
+    linear-gradient(225deg, var(--gray-50) 25%, transparent 25%) -10px 0,
+    linear-gradient(315deg, var(--gray-50) 25%, transparent 25%),
+    linear-gradient(45deg, var(--gray-50) 25%, transparent 25%);
+  background-size: 20px 20px;
+  background-color: var(--paper);
+}
+
+.dossier-year-nav.pj-jump {
+  margin-bottom: 2.75rem;
+}
+
+.pj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.pj-entry {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-thick);
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 0;
+  position: relative;
+  min-width: 0;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pj-entry:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translate(-2px, -2px);
+}
+
+.pj-logo-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 1.25rem;
+  min-height: 84px;
+  background: #0a0a0a;
+  border-bottom: var(--border-medium);
+}
+
+.pj-logo-band img {
+  max-height: 44px;
+  max-width: min(78%, 260px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.pj-logo-band img.pj-logo-crop {
+  max-height: none;
+  width: min(78%, 280px);
+  height: 56px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.pj-logo-band--black {
+  background: #0a0a0a;
+}
+
+.pj-logo-band--text {
+  background: var(--gray-50);
+}
+
+.pj-wordmark {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.02em;
+  color: var(--black);
+}
+
+.pj-body {
+  padding: 1.15rem 1.25rem 1.35rem;
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pj-num {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  background: var(--black);
+  padding: 0.2rem 0.5rem;
+}
+
+.pj-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 400;
+  margin: 0 2.6rem 0.15rem 0;
+}
+
+.pj-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-500);
+  margin: 0 0 0.9rem;
+}
+
+.pj-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+  border: 1px solid var(--gray-200);
+  padding: 0.65rem 0.8rem;
+  background: var(--paper);
+}
+
+.pj-meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gray-400);
+  margin-bottom: 0.35rem;
+}
+
+.pj-meta dd {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--dark);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pj-desc p {
+  font-size: 0.8rem;
+  line-height: 1.62;
+  color: var(--gray-700);
+  margin: 0 0 0.7rem;
+  max-width: none;
+}
+
+.pj-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.pj-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-top: 0.95rem;
+}
+
+.pj-media--hero {
+  margin: 0;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-bottom: var(--border-medium);
+}
+
+.pj-panel {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow-card-sm);
+  margin: 0;
+}
+
+.pj-panel--video {
+  aspect-ratio: 16 / 9;
+}
+
+.pj-panel--filled {
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.pj-panel--filled::before,
+.pj-panel--filled::after {
+  display: none;
+}
+
+.pj-panel--filled img,
+.pj-panel--filled video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.pj-panel--image.pj-panel--filled img {
+  object-fit: contain;
+}
+
+.pj-panel--cover img {
+  object-fit: cover;
+}
+
+.pj-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--gray-400);
+  border: 2px solid var(--gray-300);
+  border-radius: 50%;
+  background: rgba(248, 246, 243, 0.9);
+  z-index: 2;
+  padding-left: 4px;
+}
+
+.pj-entry--meta {
+  border-style: dashed;
+  text-decoration: none;
+  color: inherit;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 10px,
+      var(--gray-50) 10px 20px
+    ),
+    var(--white);
 }
 
 /* ── Track Record / Dossier Cards ── */
@@ -824,6 +1106,19 @@ strong {
   white-space: nowrap;
   z-index: 2;
   border: 1px solid var(--gray-200);
+}
+
+.pj-stealth-label {
+  bottom: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: normal;
+  text-align: center;
+  max-width: 85%;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: var(--black);
+  border: var(--border-medium);
 }
 
 /* ── Dossier Card Body ── */
@@ -1116,6 +1411,22 @@ strong {
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .projects-group-note {
+    display: none;
+  }
+
+  .projects-page {
+    padding-top: 7rem;
+  }
+
+  .pj-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pj-media {
+    grid-template-columns: 1fr 1fr;
   }
 
   .contact-grid {
