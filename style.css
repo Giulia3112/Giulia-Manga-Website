@@ -877,6 +877,11 @@ strong {
   object-fit: contain;
 }
 
+.pj-panel--filled video {
+  object-fit: contain;
+  background: #0a0a0a;
+}
+
 .pj-panel--cover img {
   object-fit: cover;
 }
